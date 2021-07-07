@@ -5,6 +5,7 @@ import requests
 
 
 # I made a comment here on my mac
+# I added another comment from my PC
 
 url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid={}'
 
