@@ -3,6 +3,9 @@ from tkinter import messagebox
 from configparser import ConfigParser
 import requests
 
+
+# I made a comment here on my mac
+
 url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid={}'
 
 config_file = 'config.ini'
