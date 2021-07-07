@@ -4,6 +4,9 @@ from configparser import ConfigParser
 import requests
 
 
+
+
+
 # I made a comment here on my mac
 # I added another comment from my PC
 
@@ -24,7 +27,7 @@ def get_weather(city):
         country = json['sys']['country']
         temp = json['main']['temp']
         icon = json['weather'][0]['icon']
-        weather = json['weather'][0]
+        weather = json['weather'][0]['main']
         ['main']
         final = (city, country, temp, icon, weather)
         return final
@@ -36,9 +39,13 @@ def get_weather(city):
 def search():
     city = city_text.get()
     weather = get_weather(city)
+    img['file'] = f'imgs\\{weather[3]}.png'
+
     if weather:
         location_lbl['text'] = f'{weather[0]}, {weather[1]}'
-        image['bitmap'] = f'imgs/{weather[3]}.png'
+        # image['bitmap'] = f'/imgs/{weather[3]}.png'
+
+
         temp_lbl['text'] = f'{weather[2]:.2f}°'
     else:
         messagebox.showerror('Error', f'Cannot find city {city}')
@@ -47,6 +54,7 @@ def search():
 app = Tk()
 app.title('Weather App')
 app.geometry('700x350')
+
 
 city_text = StringVar()
 city_entry = Entry(app, textvariable=city_text)
@@ -58,8 +66,10 @@ search_btn.pack()
 location_lbl = Label(app, text='', font=('bold', 20))
 location_lbl.pack()
 
-image = Label(app, bitmap='')
-image.pack()
+img = PhotoImage(file="")
+
+Image = Label(app, image=img, relief=RAISED)
+Image.pack()
 
 temp_lbl = Label(app, text='')
 temp_lbl.pack()
