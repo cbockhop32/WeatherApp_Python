@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from configparser import ConfigParser
+from PIL import ImageTk, Image
 import requests
 
 
@@ -28,7 +29,9 @@ def get_weather(city):
         temp = json['main']['temp']
         icon = json['weather'][0]['icon']
         weather = json['weather'][0]['main']
-        ['main']
+
+
+
         final = (city, country, temp, icon, weather)
         return final
 
@@ -46,7 +49,8 @@ def search():
         # image['bitmap'] = f'/imgs/{weather[3]}.png'
 
 
-        temp_lbl['text'] = f'{weather[2]:.2f}°'
+        temp_lbl['text'] = f'{weather[2]:.1f}° F'
+        weather_lbl['text'] = f'Current Forecast: {weather[4]}'
     else:
         messagebox.showerror('Error', f'Cannot find city {city}')
 
@@ -54,6 +58,7 @@ def search():
 app = Tk()
 app.title('Weather App')
 app.geometry('700x350')
+
 
 
 city_text = StringVar()
@@ -68,7 +73,7 @@ location_lbl.pack()
 
 img = PhotoImage(file="")
 
-Image = Label(app, image=img, relief=RAISED)
+Image = Label(app, image=img, relief=RAISED, bg="#787878")
 Image.pack()
 
 temp_lbl = Label(app, text='')
