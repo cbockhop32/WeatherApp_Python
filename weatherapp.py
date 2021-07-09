@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
 from configparser import ConfigParser
-from PIL import ImageTk, Image
 import requests
 
 url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid={}'
@@ -29,7 +28,7 @@ def get_weather(city):
 def search():
     city = city_text.get()
     weather = get_weather(city)
-    img['file'] = f'imgs\\{weather[3]}.png'
+    img['file'] = f'./imgs/{weather[3]}.png'
 
     if weather:
         location_lbl['text'] = f'{weather[0]}, {weather[1]}'
